@@ -9,9 +9,15 @@ app = FastAPI(
 
 @app.get("/api")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Hi there !"}
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+
+@app.on_event("startup")
+async def startup():
+    print("Application is starting...")
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    print("Application is closing...")
