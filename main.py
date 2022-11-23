@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(title='WinApi', description='APIs for red wine classification', version='0.1')
 
 
 @app.get("/")
