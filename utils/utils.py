@@ -108,7 +108,7 @@ def predict_quality(model: KNeighborsClassifier, data: list) -> None:
         return "Bonne qualité"
 
 
-def model_description() -> None:
+def model_description() -> str:
     """Fonction qui permet d'afficher les paramètres du modèle ainsi que la précision du modèle sur les données de test
     """
     desc = f"Le modèle KNN a une précision de {params['accuracy_score_test']} sur les données de test \nLe modèle KNN " \
@@ -118,7 +118,7 @@ def model_description() -> None:
     return desc
 
 
-def retrain_model(file_name: str) -> None:
+def retrain_model(file_name: str) -> str:
     """Fonction qui permet de recharger les données, de recharger le modèle et de le réentrainer avec les nouvelles données
 
     Args:
@@ -126,10 +126,9 @@ def retrain_model(file_name: str) -> None:
     """
     x_train, x_test, y_train, y_test = data_preparation(file_name)
     model_generator(x_train, x_test, y_train, y_test)
-    print("Le modèle a été re-entrainé avec les nouvelles données \n")
+    return "Model has been re-trained"
 
-
-def data_enrichment(data_list: list, data_file_name: str) -> None:
+def data_enrichment(data_list: list, data_file_name: str) -> str:
     """Fonction qui permet d'enrichir le jeu de données avec les nouvelles données (1 ligne)
 
     Args:
@@ -148,8 +147,9 @@ def data_enrichment(data_list: list, data_file_name: str) -> None:
             data_list = data_list + [id_add]
             writer.writerow(data_list)
             f.close()
+            return "Line correcty added"
     else:
-        print("Le nombre de données à ajouter est incorrect\nAttendu : 12\nReçu : ", len_list)
+        return f"Le nombre de données à ajouter est incorrect\nAttendu : 12\nReçu :  {len_list}"
 
 
 # Beaucoup de paramètres dans cette fonctions sont subjectives. Tout d'abord le seuil pour la corrélation est de 0.4
@@ -193,23 +193,3 @@ if my_file.is_file():
 else:
     retrain_model(params["data_file_name"])
 
-# (POST /api/predict)
-# EXEMPLE
-var_to_predict = [7.4, 0.7, 0.0, 1.9, 0.076,
-                  11.0, 34.0, 0.9978, 3.51, 0.56, 9.4]
-# Simulation de prédiction, le format doit être une liste de 11 valeurs (sans quality ni id)
-predict_quality(load_model(), var_to_predict)
-
-# (GET /api/model/description)
-# Description du modèle
-# model_description()
-
-# (PUT /api/model)
-# EXEMPLE
-var_to_add = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
-# Ajout de données dans le fichier csv (12 valeurs avec quality) l'id est ajouté automatiquement dans la fonction data_enrichment
-data_enrichment(var_to_add, params["data_file_name"])
-
-# (GET /api/model)
-# Chargement du modèle
-# model = load_model()
