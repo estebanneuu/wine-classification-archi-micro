@@ -7,6 +7,7 @@ from fastapi.templating import Jinja2Templates
 from models.wine import Wine
 from pydantic import BaseModel
 from pydantic.utils import GetterDict
+from utils import utils
 
 router_predict = APIRouter(
     prefix="/api/predict",
@@ -46,7 +47,7 @@ class WineModel(BaseModel):
 @router_predict.get("/", summary="Get the perfect wine",
                     description="Return the exepected values to have the perfect wine")
 def get_wine():
-    return Wine().get_all_wine()
+    return utils.determine_perfect_wine()
 
 """@router_predict.get("/view/{id}", response_model=WineModel, summary="Returns a single user")
 async def view(uid: int):

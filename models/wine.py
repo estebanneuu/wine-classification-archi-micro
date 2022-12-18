@@ -1,8 +1,7 @@
-from .Base import BaseModel
 from peewee import *
 
 
-class Wine(BaseModel):
+class Wine():
     id: int = PrimaryKeyField(null=False)
     fixed_acidity: float = FloatField()
     volatile_acidity: float = FloatField()

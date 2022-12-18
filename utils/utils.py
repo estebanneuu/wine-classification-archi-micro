@@ -156,8 +156,8 @@ def data_enrichment(data_list: list, data_file_name: str) -> None:
 # mais cela est discutable, dans le cas ou la corr est > 0.4 on prend la valeur max de la colonne et si la corr est <
 # -0.4 on prend la valeur min de la colonne. Autrement on prend la valeur moyenne de la colonne, considerant que la
 # valeur n'a pas un fort impact sur la qualité du vin au vu de la corrélation avec la qualité.
-
-def determine_perfect_wine(df):
+def determine_perfect_wine():
+    df = pd.read_csv("Wines.csv")
     # Calculer la correlation de chaque colonne avec la colonne "Quality"
     correlations = df.corr()["quality"].sort_values(ascending=False)
 
