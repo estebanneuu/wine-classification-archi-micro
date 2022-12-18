@@ -1,4 +1,3 @@
-from peewee import *
 
 
 class Wine():
