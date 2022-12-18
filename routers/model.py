@@ -3,8 +3,6 @@ from fastapi import APIRouter, HTTPException, Response, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import PlainTextResponse,FileResponse
-from pydantic import BaseModel
-from pydantic.utils import GetterDict
 from utils import utils
 router_model = APIRouter(
     prefix="/api/model",
@@ -12,34 +10,6 @@ router_model = APIRouter(
 )
 
 templates = Jinja2Templates(directory="templates")
-
-
-class PeeweeGetterDict(GetterDict):
-    def get(self, key: Any, default: Any = None):
-        res = getattr(self._obj, key, default)
-        if isinstance(res, peewee.ModelSelect):
-            return list(res)
-        return res
-
-
-class WineModel(BaseModel):
-    id: int
-    fixed_acidity: float
-    volatile_acidity: float
-    citric_acid: float
-    residual_sugar: float
-    chlorides: float
-    free_sulfur_dioxide: int
-    total_sulfur_dioxide: int
-    density: float
-    pH: float
-    sulphates: float
-    alcohol: float
-
-    class Config:
-        orm_mode = True
-        getter_dict = PeeweeGetterDict
-
 
 @router_model.get("/", summary="Get model",
                     description="Return serialized model",response_class=FileResponse)
