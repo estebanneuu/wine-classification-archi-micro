@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from routers import predict,model
 
 app = FastAPI(
     title='WinApi',
@@ -11,7 +12,8 @@ app = FastAPI(
 async def root():
     return {"message": "Hi there !"}
 
-
+app.include_router(predict.router_predict)
+app.include_router(model.router_model)
 
 @app.on_event("startup")
 async def startup():
