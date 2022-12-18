@@ -57,18 +57,20 @@ def get_wine():
 @router_model.put("/", response_model=WineModel, summary="Put a new wine in db")
 async def create(fixed_acidity: float, volatile_acidity: float, citric_acid: float,
                  residual_sugar: float, chlorides: float, free_sulfur_dioxide: int, total_sulfur_dioxide: int,
-                 density: float, ph: float, sulphates: float, alcohol: float):
-    return await Wine().create_wine(fixed_acidity=fixed_acidity,
-                                  volatile_acidity=volatile_acidity,
-                                  citric_acid=citric_acid,
-                                  residual_sugar=residual_sugar,
-                                  chlorides=chlorides,
-                                  free_sulfur_dioxide=free_sulfur_dioxide,
-                                  total_sulfur_dioxide=total_sulfur_dioxide,
-                                  density=density,
-                                  ph=ph,
-                                  sulphates=sulphates,
-                                  alcohol=alcohol)
+                 density: float, ph: float, sulphates: float, alcohol: float, quality: int):
+        new_wine = [fixed_acidity,
+                    volatile_acidity,
+                    citric_acid,
+                    residual_sugar,
+                    chlorides,
+                    free_sulfur_dioxide,
+                    total_sulfur_dioxide,
+                    density,
+                    ph,
+                    sulphates,
+                    alcohol,
+                    quality]
+        return utils.data_enrichment(new_wine, "Wine.csv")
 
 @router_model.post("/retrain", summary="Retrain model")
 def retrain_model():

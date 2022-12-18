@@ -103,9 +103,9 @@ def predict_quality(model: KNeighborsClassifier, data: list) -> None:
     # Prédiction
     pred = model.predict(data)[0]
     if pred == 1:
-        print("Mauvaise qualité")
+        return "Mauvaise qualité"
     else:
-        print("Bonne qualité")
+        return "Bonne qualité"
 
 
 def model_description() -> None:
