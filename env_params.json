@@ -1,0 +1,1 @@
+{"n_neighbors": 25, "leaf_size": 10, "weights": "distance", "p": 2, "metric": "minkowski", "accuracy_score_test": 0.91, "data_file_name": "Wines.csv"}
