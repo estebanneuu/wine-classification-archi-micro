@@ -1,6 +1,4 @@
 from typing import Any, List
-
-import peewee
 from fastapi import APIRouter, HTTPException, Response, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
