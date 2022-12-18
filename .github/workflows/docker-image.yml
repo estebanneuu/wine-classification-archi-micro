@@ -30,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: esteban63118/tourneo-api:latest
+          tags: esteban63118/winapi:latest
 
   redeploy:
     name: Redeploy webhook call
