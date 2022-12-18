@@ -74,4 +74,4 @@ async def create(fixed_acidity: float, volatile_acidity: float, citric_acid: flo
 
 @router_model.post("/retrain", summary="Retrain model")
 def retrain_model():
-    return("hello")
+    return utils.retrain_model("knn_model.sav")
