@@ -4,7 +4,6 @@ import peewee
 from fastapi import APIRouter, HTTPException, Response, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from models.wine import Wine
 from pydantic import BaseModel
 from pydantic.utils import GetterDict
 from utils import utils

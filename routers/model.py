@@ -5,7 +5,6 @@ from fastapi import APIRouter, HTTPException, Response, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import PlainTextResponse,FileResponse
-from models.wine import Wine
 from pydantic import BaseModel
 from pydantic.utils import GetterDict
 from utils import utils
